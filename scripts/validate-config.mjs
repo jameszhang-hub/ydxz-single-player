@@ -5,7 +5,7 @@ const root = path.resolve(import.meta.dirname, "..");
 const configPath = path.join(root, "config", "game-config.v0.json");
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const beastSourcePath = path.join(root, "src", "config.ts");
-const beastMapPath = path.join(root, "source-assets", "live-capture", "beast-atlas-map.tsv");
+const beastMapPath = path.join(root, "config", "beast-atlas-map.tsv");
 const beastAtlasPath = path.join(root, "public", "assets", "beast-atlas-original-v1.png");
 const trialConfigPath = path.join(root, "config", "trial-monsters.v148.json");
 
