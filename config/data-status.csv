@@ -1,0 +1,38 @@
+system,item,status,source,next_action
+global,official probability image,downloaded,official_probability_image,OCR and manual transcription
+global,attribute model,confirmed,user_answers,Implement in config
+combat,six skill names,confirmed,user_answers,Implement combat engine
+combat,trigger order,partial,user_answers,Validate with duel recording
+combat,damage formula,missing,user_screenshot,Need before/after battle screenshots and duel logs
+trial,v148 monster attributes,confirmed,user_pdf,Implemented 40 chapters and 1480 effective rows
+chest,chest level affects probability,confirmed,user_answers,Transcribe probability table
+chest,upgrade requirements,partial,user_screenshot_02,Need 1->2 6->11 24->30 and 31+ screenshots or public sources
+chest,level 30 and 31 probability,confirmed,user_screenshot_02,Implemented in config
+chest,auto commission rules,confirmed,user_screenshot_03,Implemented in config
+equipment,basic attributes,confirmed,user_answers,Implement attack/defense/hp/speed
+equipment,parts and affixes,missing,user_screenshot,Need equipment detail screenshots
+equipment,bracer and helmet examples,confirmed,user_screenshot_13_17,Implemented examples in config
+equipment,power formula,missing,user_screenshot,Need equip comparison screenshots
+disassemble,material output,missing,user_screenshot,Need disassemble result screenshots
+shop,free local purchase,confirmed,user_answers,Implement click-to-grant
+shop,tab structure and goods,missing,user_screenshot,Need full shop screenshots
+virtual_server,50 players,confirmed,user_answers,Generate player profiles
+guild,basic guild needed,confirmed,user_answers,Implement list/shop/basic membership
+guild,boss exact values,missing,user_screenshot,Use placeholder until screenshots
+war_soul,round trigger mechanic,partial,user_answers,Need war soul detail screenshots
+war_soul,refine rules,confirmed,user_screenshot_06_07,Implemented in config
+war_soul,compose rules,confirmed,user_screenshot_08_09,Implemented in config
+war_soul,codex names,partial,user_screenshot_10_12,Need full high-section quality names and remaining entries
+war_soul,detail examples,partial,user_screenshot_15_16,Need exact skill formulas and trigger timing
+war_soul,qinglong skills,confirmed,user_screenshot_18_20_23,Implemented in config
+war_soul,zhuque skills,partial,user_screenshot_21_26,Current and next level effects implemented; need max-level numbers
+shop,diamond warehouse and daily war soul package,confirmed,user_screenshot_04_05,Implemented in config
+hunting,map and stamina lottery,confirmed,user_answers,Need map/probability screenshots
+beast,quality and synthesis probability,partial,user_answers,Need beast list and synthesis screenshots
+territory,resource pull from random targets,confirmed,user_answers,Need UI screenshots
+mount,quality and attribute bonuses,partial,user_answers,Need mount screenshots
+soul_card,set upgrade refine affixes,confirmed,user_answers,Need card and refine screenshots
+battle_flag,resource upgrade attribute growth,confirmed,user_answers,Need cost tables
+artifact,one slot random passives,confirmed,user_answers,Transcribe official probability image and screenshots
+rune,independent attribute upgrade,confirmed,user_answers,Need rune screenshots
+gem,independent synthesis upgrade detach cost,confirmed,user_answers,Need gem screenshots

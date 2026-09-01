@@ -1,0 +1,9 @@
+{
+  "name": "跃动小子",
+  "short_name": "跃动小子",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#071d36",
+  "theme_color": "#163b78"
+}

@@ -1,0 +1,1121 @@
+{
+  "meta": {
+    "gameName": "跃动小子",
+    "configVersion": "0.0.1",
+    "target": "single-player-local-web-pwa",
+    "viewport": {
+      "primaryDevice": "iPhone 13",
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "probabilityUnit": "basis_points",
+    "basisPointsTotal": 10000,
+    "sourcePriority": [
+      "user_screenshot",
+      "user_video",
+      "official_probability_image",
+      "public_guide",
+      "inferred"
+    ]
+  },
+  "attributes": {
+    "base": [
+      { "id": "attack", "name": "攻", "source": "user_answers" },
+      { "id": "defense", "name": "防", "source": "user_answers" },
+      { "id": "hp", "name": "血", "source": "user_answers" },
+      { "id": "speed", "name": "速度", "source": "user_answers" }
+    ],
+    "skills": [
+      { "id": "lifesteal", "name": "吸血", "resistId": "anti_lifesteal", "source": "user_answers" },
+      { "id": "crit", "name": "暴击", "resistId": "anti_crit", "source": "user_answers" },
+      { "id": "dodge", "name": "闪避", "resistId": "anti_dodge", "source": "user_answers" },
+      { "id": "stun", "name": "击晕", "resistId": "anti_stun", "source": "user_answers" },
+      { "id": "combo", "name": "连击", "resistId": "anti_combo", "source": "user_answers" },
+      { "id": "counter", "name": "反击", "resistId": "anti_counter", "source": "user_answers" }
+    ],
+    "resists": [
+      { "id": "anti_lifesteal", "name": "抗吸血", "source": "user_answers" },
+      { "id": "anti_crit", "name": "抗暴击", "source": "user_answers" },
+      { "id": "anti_dodge", "name": "抗闪避", "source": "user_answers" },
+      { "id": "anti_stun", "name": "抗击晕", "source": "user_answers" },
+      { "id": "anti_combo", "name": "抗连击", "source": "user_answers" },
+      { "id": "anti_counter", "name": "抗反击", "source": "user_answers" }
+    ]
+  },
+  "currencies": [
+    { "id": "gold", "name": "金币", "source": "user_answers" },
+    { "id": "diamond", "name": "钻石", "source": "user_answers" },
+    { "id": "rmb", "name": "人民币", "displayOnly": true, "source": "user_answers" },
+    { "id": "chest_exp", "name": "宝箱经验", "source": "inferred" },
+    { "id": "guild_coin", "name": "公会币", "source": "inferred" },
+    { "id": "duel_coin", "name": "决斗币", "source": "inferred" },
+    { "id": "hunting_stamina", "name": "捕猎体力", "source": "user_answers" },
+    { "id": "war_soul_core", "name": "魂核", "source": "user_screenshot_06" },
+    { "id": "war_soul_luck", "name": "战魂精炼幸运值", "source": "user_screenshot_06" },
+    { "id": "challenge_ticket", "name": "挑战券", "source": "user_screenshot_03" }
+  ],
+  "qualities": [
+    { "id": "common", "name": "普通", "color": "#d8d8d8", "rank": 1, "source": "inferred" },
+    { "id": "uncommon", "name": "优秀", "color": "#49c46b", "rank": 2, "source": "inferred" },
+    { "id": "rare", "name": "稀有", "color": "#4aa3ff", "rank": 3, "source": "inferred" },
+    { "id": "epic", "name": "史诗", "color": "#b062ff", "rank": 4, "source": "inferred" },
+    { "id": "legendary", "name": "传说", "color": "#ff9b2f", "rank": 5, "source": "inferred" },
+    { "id": "mythic", "name": "神话", "color": "#ff4c4c", "rank": 6, "source": "inferred" },
+    { "id": "immortal", "name": "不朽", "color": "#ff69d2", "rank": 7, "source": "inferred" }
+  ],
+  "playerStart": {
+    "level": 1,
+    "serverDay": 1,
+    "resources": {
+      "gold": 0,
+      "diamond": 0
+    },
+    "baseAttributes": {
+      "attack": 10,
+      "defense": 3,
+      "hp": 100,
+      "speed": 10
+    },
+    "combatAttributes": {
+      "lifesteal": 0,
+      "crit": 0,
+      "dodge": 0,
+      "stun": 0,
+      "combo": 0,
+      "counter": 0,
+      "anti_lifesteal": 0,
+      "anti_crit": 0,
+      "anti_dodge": 0,
+      "anti_stun": 0,
+      "anti_combo": 0,
+      "anti_counter": 0
+    },
+    "source": "inferred"
+  },
+  "combat": {
+    "turnMode": "multi_round_until_death",
+    "firstMover": "higher_speed",
+    "speedTie": "player_first",
+    "effectiveChanceFormula": "clamp(attacker_skill - defender_resist, 0, skill_cap)",
+    "skillCapBasisPoints": 10000,
+    "damage": {
+      "formula": "max(1, attacker.attack - defender.defense)",
+      "critMultiplier": 2,
+      "source": "inferred"
+    },
+    "flow": [
+      "skip_if_stunned",
+      "roll_dodge_or_crit_lock",
+      "roll_crit",
+      "calculate_damage",
+      "roll_stun_if_hit",
+      "apply_damage",
+      "apply_lifesteal_if_hit",
+      "roll_counter",
+      "roll_combo"
+    ],
+    "rules": {
+      "dodgedHitCannotLifesteal": true,
+      "dodgedHitCannotStun": true,
+      "critDamageCannotBeDodged": true,
+      "comboSecondHitCanTriggerOtherSkills": true,
+      "maxComboChain": 3,
+      "counterCanTriggerSkills": true
+    },
+    "source": "user_answers"
+  },
+  "equipment": {
+    "slots": [
+      { "id": "weapon", "name": "武器", "source": "inferred" },
+      { "id": "helmet", "name": "头盔", "source": "inferred" },
+      { "id": "armor", "name": "衣服", "source": "inferred" },
+      { "id": "belt", "name": "腰带", "source": "inferred" },
+      { "id": "boots", "name": "鞋子", "source": "inferred" },
+      { "id": "ring", "name": "戒指", "source": "inferred" },
+      { "id": "necklace", "name": "项链", "source": "inferred" },
+      { "id": "bracer", "name": "护腕", "source": "inferred" }
+    ],
+    "powerFormula": {
+      "formula": "attack*10 + defense*10 + hp*1 + speed*8 + sum(combat_attr_basis_points)*0.2",
+      "source": "inferred"
+    },
+    "affixPools": [
+      {
+        "id": "basic_affixes",
+        "items": [
+          "attack",
+          "defense",
+          "hp",
+          "speed",
+          "lifesteal",
+          "crit",
+          "dodge",
+          "stun",
+          "combo",
+          "counter",
+          "anti_lifesteal",
+          "anti_crit",
+          "anti_dodge",
+          "anti_stun",
+          "anti_combo",
+          "anti_counter"
+        ],
+        "source": "user_answers"
+      }
+    ],
+    "examples": [
+      {
+        "id": "equipped_helmet_zhizun_lv135",
+        "name": "[至尊的]头盔",
+        "slot": "helmet",
+        "level": 135,
+        "qualityDisplay": "至尊的",
+        "power": 290899,
+        "selectedCosmetic": true,
+        "baseAttributes": {
+          "speed": 837,
+          "hp": 17986,
+          "attack": 3407,
+          "defense": 1445
+        },
+        "combatAttributes": {
+          "counter": 12.22,
+          "dodge": 10.91,
+          "anti_counter": 5,
+          "grievous_wound": 6.44
+        },
+        "refineAttributesPct": {
+          "speed": 20.98,
+          "hp": 21.08,
+          "attack": 20.83,
+          "defense": 20.83
+        },
+        "refineResonanceStage": 0,
+        "source": "user_screenshot_13"
+      },
+      {
+        "id": "equipped_bracer_zhizun_lv125",
+        "name": "[至尊的]护腕",
+        "slot": "bracer",
+        "level": 125,
+        "qualityDisplay": "至尊的",
+        "baseAttributes": {
+          "speed": 764,
+          "hp": 16679,
+          "attack": 3207,
+          "defense": 1344
+        },
+        "combatAttributes": {
+          "counter": 10.74,
+          "dodge": 12.49,
+          "crit_damage": 4.29,
+          "healing": 4.03
+        },
+        "source": "user_screenshot_17"
+      },
+      {
+        "id": "new_drop_bracer_chaofan_lv138",
+        "name": "[超凡的]护腕",
+        "slot": "bracer",
+        "level": 138,
+        "qualityDisplay": "超凡的",
+        "powerDeltaVsCurrent": -65982,
+        "baseAttributes": {
+          "speed": 679,
+          "hp": 16493,
+          "attack": 3185,
+          "defense": 1330
+        },
+        "combatAttributes": {
+          "combo": 6.47,
+          "grievous_wound": 5
+        },
+        "source": "user_screenshot_17"
+      }
+    ],
+    "openResultExample": {
+      "id": "ten_open_lv30_example",
+      "openCount": 10,
+      "chestLevel": 30,
+      "powerAfterOpen": 317485,
+      "primaryAction": "全部出售",
+      "source": "user_screenshot_14"
+    }
+  },
+  "chests": {
+    "upgradeNoWaitTime": true,
+    "levels": [
+      {
+        "level": 1,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv1",
+        "source": "missing_user_screenshot"
+      },
+      {
+        "level": 2,
+        "upgradeCost": [{ "itemId": "gold", "amount": 100 }],
+        "lootTableId": "chest_equipment_lv2",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 3,
+        "upgradeCost": [{ "itemId": "gold", "amount": 300 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 4,
+        "upgradeCost": [{ "itemId": "gold", "amount": 1500 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 5,
+        "upgradeCost": [{ "itemId": "gold", "amount": 3000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 6,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "missing_public_or_user_screenshot"
+      },
+      {
+        "level": 7,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "missing_public_or_user_screenshot"
+      },
+      {
+        "level": 8,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "missing_public_or_user_screenshot"
+      },
+      {
+        "level": 9,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "missing_public_or_user_screenshot"
+      },
+      {
+        "level": 10,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "missing_public_or_user_screenshot"
+      },
+      {
+        "level": 11,
+        "upgradeCost": [{ "itemId": "gold", "amount": 270000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 12,
+        "upgradeCost": [{ "itemId": "gold", "amount": 330000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 13,
+        "upgradeCost": [{ "itemId": "gold", "amount": 400000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 14,
+        "upgradeCost": [{ "itemId": "gold", "amount": 540000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 15,
+        "upgradeCost": [{ "itemId": "gold", "amount": 590000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 16,
+        "upgradeCost": [{ "itemId": "gold", "amount": 610000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 17,
+        "upgradeCost": [{ "itemId": "gold", "amount": 680000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 18,
+        "upgradeCost": [{ "itemId": "gold", "amount": 750000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 19,
+        "upgradeCost": [{ "itemId": "gold", "amount": 900000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 20,
+        "upgradeCost": [{ "itemId": "gold", "amount": 1050000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 21,
+        "upgradeCost": [{ "itemId": "gold", "amount": 1200000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 22,
+        "upgradeCost": [{ "itemId": "gold", "amount": 1400000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 23,
+        "upgradeCost": [{ "itemId": "gold", "amount": 1600000 }],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "public_guide_9game_8767044"
+      },
+      {
+        "level": 24,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv3",
+        "source": "missing_public_or_user_screenshot"
+      },
+      {
+        "level": 30,
+        "upgradeCost": [{ "itemId": "gold", "amount": 1600000 }],
+        "upgradeProgress": { "current": 3, "required": 5 },
+        "lootTableId": "chest_equipment_lv30",
+        "source": "user_screenshot_02"
+      },
+      {
+        "level": 31,
+        "upgradeCost": [],
+        "lootTableId": "chest_equipment_lv31",
+        "source": "user_screenshot_02"
+      }
+    ],
+    "autoCommission": {
+      "name": "开箱委托",
+      "keepEquipmentQuality": "至尊的及以上",
+      "basicConditionMode": "or_groups",
+      "basicConditions": [
+        {
+          "all": [
+            { "attribute": "crit", "name": "暴击" },
+            { "attribute": "any", "name": "任意" }
+          ]
+        },
+        {
+          "all": [
+            { "attribute": "dodge", "name": "闪避" },
+            { "attribute": "any", "name": "任意" }
+          ]
+        }
+      ],
+      "extraStopConditions": [
+        { "id": "challenge_ticket_full", "name": "挑战券满时停止", "enabledInScreenshot": false },
+        { "id": "higher_power", "name": "战力更高时停止", "enabledInScreenshot": false },
+        {
+          "id": "high_quality",
+          "name": "获得高品质装备时停止",
+          "enabledInScreenshot": false,
+          "quality": "至尊的及以上"
+        }
+      ],
+      "unmatchedEquipmentAction": "sell",
+      "highQualityEquipmentPriorityAutoDisassemble": {
+        "enabled": true,
+        "quality": "完美的及以上"
+      },
+      "toggles": [
+        { "id": "auto_open_accelerate", "name": "自动开箱加速", "enabledInScreenshot": false },
+        { "id": "stop_in_other_screen", "name": "其他界面停止", "enabledInScreenshot": false },
+        { "id": "auto_recommend", "name": "自动推荐", "enabledInScreenshot": false }
+      ],
+      "source": "user_screenshot_03"
+    },
+    "lootTables": [
+      {
+        "id": "chest_equipment_lv1",
+        "type": "equipment_quality",
+        "rolls": [
+          { "quality": "common", "weight": 7000, "source": "inferred_until_ocr" },
+          { "quality": "uncommon", "weight": 2500, "source": "inferred_until_ocr" },
+          { "quality": "rare", "weight": 500, "source": "inferred_until_ocr" },
+          { "quality": "epic", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "legendary", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "mythic", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "immortal", "weight": 0, "source": "inferred_until_ocr" }
+        ]
+      },
+      {
+        "id": "chest_equipment_lv2",
+        "type": "equipment_quality",
+        "rolls": [
+          { "quality": "common", "weight": 6000, "source": "inferred_until_ocr" },
+          { "quality": "uncommon", "weight": 3200, "source": "inferred_until_ocr" },
+          { "quality": "rare", "weight": 800, "source": "inferred_until_ocr" },
+          { "quality": "epic", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "legendary", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "mythic", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "immortal", "weight": 0, "source": "inferred_until_ocr" }
+        ]
+      },
+      {
+        "id": "chest_equipment_lv3",
+        "type": "equipment_quality",
+        "rolls": [
+          { "quality": "common", "weight": 5000, "source": "inferred_until_ocr" },
+          { "quality": "uncommon", "weight": 3700, "source": "inferred_until_ocr" },
+          { "quality": "rare", "weight": 1200, "source": "inferred_until_ocr" },
+          { "quality": "epic", "weight": 100, "source": "inferred_until_ocr" },
+          { "quality": "legendary", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "mythic", "weight": 0, "source": "inferred_until_ocr" },
+          { "quality": "immortal", "weight": 0, "source": "inferred_until_ocr" }
+        ]
+      },
+      {
+        "id": "chest_equipment_lv30",
+        "type": "equipment_quality",
+        "displayQualityOrder": [
+          "tier_01",
+          "tier_02",
+          "tier_03",
+          "tier_04",
+          "tier_05",
+          "tier_06",
+          "tier_07",
+          "tier_08",
+          "tier_09",
+          "tier_10"
+        ],
+        "rolls": [
+          { "quality": "tier_01", "displayColor": "gray_or_white", "weight": 0, "source": "user_screenshot_02" },
+          { "quality": "tier_02", "displayColor": "green", "weight": 0, "source": "user_screenshot_02" },
+          { "quality": "tier_03", "displayColor": "blue", "weight": 416, "source": "user_screenshot_02" },
+          { "quality": "tier_04", "displayColor": "purple", "weight": 2700, "source": "user_screenshot_02" },
+          { "quality": "tier_05", "displayColor": "yellow", "weight": 3800, "source": "user_screenshot_02" },
+          { "quality": "tier_06", "displayColor": "orange", "weight": 2100, "source": "user_screenshot_02" },
+          { "quality": "tier_07", "displayColor": "red", "weight": 700, "source": "user_screenshot_02" },
+          { "quality": "tier_08", "displayColor": "cyan", "weight": 200, "source": "user_screenshot_02" },
+          { "quality": "tier_09", "displayColor": "gold", "weight": 80, "source": "user_screenshot_02" },
+          { "quality": "tier_10", "displayColor": "rainbow", "weight": 4, "source": "user_screenshot_02" }
+        ]
+      },
+      {
+        "id": "chest_equipment_lv31",
+        "type": "equipment_quality",
+        "displayQualityOrder": [
+          "tier_01",
+          "tier_02",
+          "tier_03",
+          "tier_04",
+          "tier_05",
+          "tier_06",
+          "tier_07",
+          "tier_08",
+          "tier_09",
+          "tier_10"
+        ],
+        "rolls": [
+          { "quality": "tier_01", "displayColor": "gray_or_white", "weight": 0, "source": "user_screenshot_02" },
+          { "quality": "tier_02", "displayColor": "green", "weight": 0, "source": "user_screenshot_02" },
+          { "quality": "tier_03", "displayColor": "blue", "weight": 235, "source": "user_screenshot_02" },
+          { "quality": "tier_04", "displayColor": "purple", "weight": 2300, "source": "user_screenshot_02" },
+          { "quality": "tier_05", "displayColor": "yellow", "weight": 4150, "source": "user_screenshot_02" },
+          { "quality": "tier_06", "displayColor": "orange", "weight": 2200, "source": "user_screenshot_02" },
+          { "quality": "tier_07", "displayColor": "red", "weight": 800, "source": "user_screenshot_02" },
+          { "quality": "tier_08", "displayColor": "cyan", "weight": 220, "source": "user_screenshot_02" },
+          { "quality": "tier_09", "displayColor": "gold", "weight": 90, "source": "user_screenshot_02" },
+          { "quality": "tier_10", "displayColor": "rainbow", "weight": 5, "source": "user_screenshot_02" }
+        ]
+      }
+    ]
+  },
+  "shop": {
+    "freeLocalPurchase": true,
+    "ignorePurchaseLimits": true,
+    "tabs": [
+      { "id": "recharge", "name": "充值", "source": "missing_user_screenshot" },
+      { "id": "gift", "name": "礼包", "source": "missing_user_screenshot" },
+      { "id": "diamond", "name": "钻石商城", "source": "missing_user_screenshot" },
+      { "id": "diamond_hot", "name": "钻石热卖", "source": "user_screenshot_04" },
+      { "id": "gold_warehouse", "name": "金币仓库", "source": "user_screenshot_04" },
+      { "id": "diamond_warehouse", "name": "钻石仓库", "source": "user_screenshot_04" },
+      { "id": "alliance_shop", "name": "联盟商店", "source": "user_screenshot_04" },
+      { "id": "merit_shop", "name": "功勋商店", "source": "user_screenshot_04" },
+      { "id": "daily", "name": "每日", "source": "missing_user_screenshot" },
+      { "id": "daily_package", "name": "日常礼包", "source": "user_screenshot_05" },
+      { "id": "daily_special", "name": "每日特价", "source": "user_screenshot_05" },
+      { "id": "growth_package", "name": "成长礼包", "source": "user_screenshot_05" },
+      { "id": "privilege_package", "name": "特权", "source": "user_screenshot_05" },
+      { "id": "monthly_card", "name": "月卡", "source": "user_screenshot_05" },
+      { "id": "weekly", "name": "每周", "source": "missing_user_screenshot" },
+      { "id": "privilege", "name": "特权", "source": "missing_user_screenshot" },
+      { "id": "guild", "name": "公会商店", "source": "inferred" },
+      { "id": "duel", "name": "决斗商店", "source": "inferred" }
+    ],
+    "goods": [
+      {
+        "id": "recharge_6",
+        "tab": "recharge",
+        "name": "6元充值",
+        "priceType": "rmb",
+        "displayPrice": "¥6",
+        "grantItems": [
+          { "itemId": "diamond", "amount": 60 }
+        ],
+        "source": "inferred_until_shop_screenshot"
+      },
+      {
+        "id": "diamond_pack_small",
+        "tab": "diamond",
+        "name": "钻石小包",
+        "priceType": "rmb",
+        "displayPrice": "¥30",
+        "grantItems": [
+          { "itemId": "diamond", "amount": 300 }
+        ],
+        "source": "inferred_until_shop_screenshot"
+      },
+      {
+        "id": "diamond_hot_6",
+        "tab": "diamond_hot",
+        "name": "钻石",
+        "priceType": "rmb",
+        "displayPrice": "¥6",
+        "grantItems": [{ "itemId": "diamond", "amount": 60 }],
+        "firstPurchaseDouble": true,
+        "source": "user_screenshot_04"
+      },
+      {
+        "id": "diamond_hot_30",
+        "tab": "diamond_hot",
+        "name": "钻石",
+        "priceType": "rmb",
+        "displayPrice": "¥30",
+        "grantItems": [{ "itemId": "diamond", "amount": 300 }],
+        "firstPurchaseDouble": true,
+        "source": "user_screenshot_04"
+      },
+      {
+        "id": "diamond_hot_68",
+        "tab": "diamond_hot",
+        "name": "钻石",
+        "priceType": "rmb",
+        "displayPrice": "¥68",
+        "grantItems": [{ "itemId": "diamond", "amount": 680 }],
+        "firstPurchaseDouble": true,
+        "source": "user_screenshot_04"
+      },
+      {
+        "id": "diamond_hot_128",
+        "tab": "diamond_hot",
+        "name": "钻石",
+        "priceType": "rmb",
+        "displayPrice": "¥128",
+        "grantItems": [{ "itemId": "diamond", "amount": 1280 }],
+        "firstPurchaseDouble": true,
+        "source": "user_screenshot_04"
+      },
+      {
+        "id": "diamond_hot_328",
+        "tab": "diamond_hot",
+        "name": "钻石",
+        "priceType": "rmb",
+        "displayPrice": "¥328",
+        "grantItems": [{ "itemId": "diamond", "amount": 3280 }],
+        "firstPurchaseDouble": true,
+        "source": "user_screenshot_04"
+      },
+      {
+        "id": "diamond_hot_648",
+        "tab": "diamond_hot",
+        "name": "钻石",
+        "priceType": "rmb",
+        "displayPrice": "¥648",
+        "grantItems": [{ "itemId": "diamond", "amount": 6480 }],
+        "firstPurchaseDouble": true,
+        "source": "user_screenshot_04"
+      },
+      {
+        "id": "daily_package_68",
+        "tab": "daily_package",
+        "name": "日常礼包",
+        "priceType": "rmb",
+        "displayPrice": "¥68",
+        "limitDisplay": "0/5",
+        "grantItems": [
+          { "itemId": "diamond", "amount": 680 },
+          { "itemId": "war_soul_optional_chest_purple", "amount": 1 },
+          { "itemId": "battle_soul_gem", "amount": 20 }
+        ],
+        "source": "user_screenshot_05"
+      },
+      {
+        "id": "daily_package_198",
+        "tab": "daily_package",
+        "name": "日常礼包",
+        "priceType": "rmb",
+        "displayPrice": "¥198",
+        "limitDisplay": "0/5",
+        "grantItems": [
+          { "itemId": "diamond", "amount": 1980 },
+          { "itemId": "war_soul_optional_chest_gold", "amount": 1 },
+          { "itemId": "battle_soul_gem", "amount": 50 }
+        ],
+        "source": "user_screenshot_05"
+      },
+      {
+        "id": "daily_package_648",
+        "tab": "daily_package",
+        "name": "日常礼包",
+        "priceType": "rmb",
+        "displayPrice": "¥648",
+        "limitDisplay": "0/30",
+        "grantItems": [
+          { "itemId": "diamond", "amount": 6480 },
+          { "itemId": "war_soul_optional_chest_orange", "amount": 1 },
+          { "itemId": "battle_soul_gem", "amount": 100 }
+        ],
+        "source": "user_screenshot_05"
+      }
+    ]
+  },
+  "systems": {
+    "warSoul": {
+      "enabledInV1": true,
+      "triggerModel": "trigger_on_nth_combat_round_or_action",
+      "tabs": ["战魂", "精炼", "合成", "图鉴"],
+      "refine": {
+        "cost": [{ "itemId": "gold", "amount": 12000 }],
+        "luckValueInScreenshot": 634,
+        "selectedWarSoul": {
+          "quality": "purple",
+          "star": 3,
+          "source": "user_screenshot_06"
+        },
+        "rules": [
+          "消耗魂核可以对战魂进行精炼，获得精炼属性加成；战魂品质越高，精炼等级上限越高。",
+          "精炼主属性固定为生命，副属性随机。",
+          "根据当前精炼属性数值获得不同精炼星级，精炼星级会影响战魂品阶。",
+          "不满意当前精炼结果时，可以选择任意精炼属性进行回退，回退会移除对应属性，回退后可以重新精炼。",
+          "战魂精炼时会增加或减少幸运值，幸运值越高获得高星级精炼的概率越高。"
+        ],
+        "exampleRefineOptions": [
+          {
+            "star": 1,
+            "attributes": [
+              { "id": "hp", "name": "生命", "value": 8373 },
+              { "id": "tenacity", "name": "坚毅", "percent": 2.65 },
+              { "id": "defense", "name": "防御", "value": 296 },
+              { "id": "anti_crit", "name": "暴击抗性", "percent": 3.04 }
+            ]
+          },
+          {
+            "star": 1,
+            "attributes": [
+              { "id": "hp", "name": "生命", "value": 9591 },
+              { "id": "stun", "name": "击晕", "percent": 2.67 },
+              { "id": "anti_dodge", "name": "闪避抗性", "percent": 2.54 },
+              { "id": "anti_crit", "name": "暴击抗性", "percent": 2.9 }
+            ]
+          },
+          {
+            "star": 2,
+            "attributes": [
+              { "id": "hp", "name": "生命", "value": 9327 },
+              { "id": "crit", "name": "暴击", "percent": 3.77 },
+              { "id": "crit_damage", "name": "暴击伤害", "percent": 3.87 },
+              { "id": "anti_stun", "name": "击晕抗性", "percent": 3 }
+            ]
+          },
+          {
+            "star": 3,
+            "attributes": [
+              { "id": "hp", "name": "生命", "value": 5727 },
+              { "id": "lifesteal", "name": "吸血", "percent": 2.58 },
+              { "id": "recovery", "name": "恢复", "percent": 2.65 },
+              { "id": "anti_combo", "name": "连击抗性", "percent": 3.1 }
+            ]
+          }
+        ],
+        "source": "user_screenshot_06_07"
+      },
+      "compose": {
+        "ruleSummary": [
+          "可以通过合成获得更高品质的战魂。",
+          "合成时投入的战魂数量越多，成功率越高，最高100%。",
+          "合成失败时投入的主战魂仍然保留，副战魂会被消耗。",
+          "合成成功时获得更高品质战魂；合成结果随机且各战魂均分概率。",
+          "新战魂会继承主战魂的精炼属性值和幸运值，并重新计算精炼属性星级。",
+          "高品质合成后可能因为品质精炼属性上限提高导致精炼星级下降，超凡级战魂会完全继承精炼星级。",
+          "完美及以上品质战魂可以置换；置换消耗一定数量低品质战魂，保持当前精炼属性不变，并随机获得一个其他同品质战魂。"
+        ],
+        "failureKeepsMainWarSoul": true,
+        "failureConsumesSubWarSouls": true,
+        "successResultDistribution": "equal_among_available_war_souls",
+        "maxSuccessRateBasisPoints": 10000,
+        "source": "user_screenshot_08_09"
+      },
+      "codex": {
+        "sections": [
+          {
+            "quality": "legendary",
+            "displayName": "传说级",
+            "items": ["波比", "影武者", "炎魔", "极光", "纳塞"],
+            "source": "user_screenshot_10"
+          },
+          {
+            "quality": "epic",
+            "displayName": "史诗级",
+            "items": ["泰尼", "尤弥尔", "夜叉", "罗刹"],
+            "source": "user_screenshot_10_11"
+          },
+          {
+            "quality": "rare",
+            "displayName": "稀有级",
+            "items": ["耶格尔", "乌云"],
+            "source": "user_screenshot_11"
+          },
+          {
+            "quality": "fine",
+            "displayName": "精良级",
+            "items": ["布朗", "苍云"],
+            "source": "user_screenshot_11"
+          },
+          {
+            "quality": "unknown_high_section",
+            "displayName": "截图截断的高阶分组",
+            "items": ["青龙", "白虎", "朱雀", "玄武", "切茜娅", "海德拉"],
+            "source": "user_screenshot_12"
+          },
+          {
+            "quality": "perfect",
+            "displayName": "完美级",
+            "items": ["死神", "红莲", "波蒙特", "阿努比斯", "奈尼斯"],
+            "source": "user_screenshot_12"
+          }
+        ],
+        "loadingButtonText": "图鉴加成"
+      },
+      "items": [
+        {
+          "id": "war_soul_qinglong",
+          "name": "青龙",
+          "quality": "unknown_high_section",
+          "stage": 10,
+          "stageDisplay": "满阶",
+          "baseBonusPct": {
+            "hp": 40,
+            "attack": 10,
+            "defense": 10
+          },
+          "combatSkills": [
+            {
+              "slot": 1,
+              "name": "神罚天雷",
+              "level": 4,
+              "label": "变身",
+              "release": { "round": 2 },
+              "cooldownRounds": 2,
+              "durationRounds": 2,
+              "damagePct": 291,
+              "effects": [
+                { "type": "apply_status", "target": "enemy_target", "status": "触电" },
+                { "type": "trigger_status_damage", "status": "触电", "times": 5 },
+                { "type": "status_turn_start_damage", "status": "触电", "scalesWith": "caster_attack", "pct": 50 },
+                { "type": "damage_taken_increase", "target": "enemy_target", "pct": 45 },
+                { "type": "attack_increase", "target": "self", "pct": 20 }
+              ],
+              "rawText": "第2回合释放，攻击造成291%的伤害，并使目标进入触电状态，立即触发5次触电伤害；触电状态下的敌人回合开始时会额外受到等同于施加者攻击力50%的额外伤害，使目标受到伤害提高45%，使自身攻击提高20%，持续2回合（冷却2回合）",
+              "source": "user_screenshot_20"
+            },
+            {
+              "slot": 2,
+              "name": "雷灵",
+              "level": 4,
+              "trigger": "after_war_soul_skill_release",
+              "maxStacks": 3,
+              "effects": [
+                { "type": "heal", "target": "self", "pctOfMaxHp": 20 },
+                { "type": "element_damage_increase", "target": "self", "element": "雷", "pct": 180 }
+              ],
+              "rawText": "释放战魂技能后，回复20%的生命，使自身雷元素伤害增加180%，可叠加3层",
+              "source": "user_screenshot_19"
+            },
+            {
+              "slot": 3,
+              "name": "神威",
+              "level": 4,
+              "trigger": "battle_start",
+              "durationRounds": 5,
+              "effects": [
+                { "type": "special_attribute_resist_decrease", "target": "enemy_front_row", "pct": 30 },
+                { "type": "damage_dealt_increase", "target": "self", "pct": 40 }
+              ],
+              "rawText": "战斗开始时，使敌方前排全特殊属性抗性降低30%，使自身造成伤害提高40%，持续5回合",
+              "source": "user_screenshot_18"
+            },
+            {
+              "slot": 4,
+              "name": "龙之传承",
+              "level": 4,
+              "trigger": "on_attack",
+              "durationRounds": 2,
+              "maxStacks": 3,
+              "effects": [
+                { "type": "combo_increase", "target": "self", "pct": 21 },
+                { "type": "element_damage_increase", "target": "self", "element": "全", "pct": 30, "trigger": "on_combo_trigger" }
+              ],
+              "rawText": "攻击时，使自身连击提升21%，持续2回合，可叠加3层；触发连击时，使自身全元素增幅提升30%，持续2回合，可叠加3层",
+              "source": "user_screenshot_23"
+            }
+          ],
+          "source": "user_screenshot_15_18_20_23"
+        },
+        {
+          "id": "war_soul_zhuque",
+          "name": "朱雀",
+          "quality": "unknown_high_section",
+          "stage": 10,
+          "stageDisplay": "满阶",
+          "baseBonusPct": {
+            "hp": 40,
+            "attack": 10,
+            "defense": 10
+          },
+          "combatSkills": [
+            {
+              "slot": 1,
+              "name": "圣焰",
+              "level": 1,
+              "label": "变身",
+              "release": { "round": 2 },
+              "cooldownRounds": 2,
+              "damagePct": 196,
+              "durationRounds": 2,
+              "effects": [
+                { "type": "damage_taken_increase", "target": "enemy_target", "pct": 20 }
+              ],
+              "nextLevel": {
+                "damagePct": 225,
+                "durationRounds": 2,
+                "effects": [
+                  { "type": "damage_taken_increase", "target": "enemy_target", "pct": 25 },
+                  { "type": "beast_strength_increase", "target": "self", "pct": 40 }
+                ]
+              },
+              "rawText": "第2回合释放，攻击造成196%的伤害，使目标受到伤害提高20%（冷却2回合）",
+              "nextRawText": "第2回合释放，攻击造成225%的伤害，使目标受到伤害提高25%，使自身魔兽强度提升40%。持续2回合（冷却2回合）",
+              "source": "user_screenshot_21"
+            },
+            {
+              "slot": 2,
+              "name": "业火",
+              "level": 1,
+              "trigger": "on_attack",
+              "maxStacks": 3,
+              "effects": [
+                { "type": "element_damage_increase", "target": "self", "element": "全", "pct": 10 },
+                { "type": "element_damage_extra_increase", "target": "self", "element": "火", "pct": 5 }
+              ],
+              "nextLevel": {
+                "effects": [
+                  { "type": "element_damage_increase", "target": "self", "element": "全", "pct": 15 },
+                  { "type": "element_damage_extra_increase", "target": "self", "element": "火", "pct": 7 }
+                ]
+              },
+              "rawText": "攻击时，使自身全元素增幅提升10%，火元素增幅额外提升5%，可叠加3层",
+              "nextRawText": "攻击时，使自身全元素增幅提升15%，火元素增幅额外提升7%，可叠加3层",
+              "source": "user_screenshot_24"
+            },
+            {
+              "slot": 3,
+              "name": "重燃",
+              "level": 1,
+              "trigger": "round_start_and_on_death",
+              "maxStacks": 10,
+              "effects": [
+                { "type": "damage_dealt_increase", "target": "self", "pct": 4, "trigger": "round_start" },
+                { "type": "revive_heal", "target": "self", "pctOfMaxHp": 10, "trigger": "on_death" },
+                { "type": "burn_single_target", "target": "enemy_target", "durationRounds": 2, "damageReductionPct": 50, "trigger": "on_death", "note": "每场战斗仅触发1次，与其他复活效果互斥" }
+              ],
+              "nextLevel": {
+                "effects": [
+                  { "type": "damage_dealt_increase", "target": "self", "pct": 5, "trigger": "round_start" },
+                  { "type": "revive_heal", "target": "self", "pctOfMaxHp": 15, "trigger": "on_death" }
+                ]
+              },
+              "rawText": "回合开始时，使自身造成伤害提高4%，可叠加10层；死亡时，复活并回复10%的生命，使自身2回合内受到目标角色伤害降低50%（每场战斗仅触发1次，与其他复活效果互斥）",
+              "nextRawText": "回合开始时，使自身造成伤害提高5%，可叠加10层；死亡时，复活并回复15%的生命",
+              "source": "user_screenshot_25"
+            },
+            {
+              "slot": 4,
+              "name": "离火",
+              "level": 1,
+              "trigger": "after_war_soul_skill_release",
+              "durationRounds": 2,
+              "effects": [
+                { "type": "heal", "target": "self", "pctOfMaxHp": 10 },
+                { "type": "tenacity_increase", "target": "self", "pct": 15 }
+              ],
+              "nextLevel": {
+                "durationRounds": 2,
+                "effects": [
+                  { "type": "heal", "target": "self", "pctOfMaxHp": 13 },
+                  { "type": "tenacity_increase", "target": "self", "pct": 20 }
+                ]
+              },
+              "rawText": "释放战魂技能后，回复10%的生命，使自身全抗性提升15%，持续2回合",
+              "nextRawText": "释放战魂技能后，回复13%的生命，使自身全抗性提升20%，持续2回合",
+              "source": "user_screenshot_26"
+            }
+          ],
+          "source": "user_screenshot_21_22_24_26"
+        },
+        {
+          "id": "war_soul_wuyun",
+          "name": "乌云",
+          "quality": "rare",
+          "stage": 3,
+          "deployed": true,
+          "baseBonusPct": {
+            "hp": 15,
+            "attack": 4,
+            "defense": 4
+          },
+          "combatSkills": [
+            {
+              "name": "野蛮之击",
+              "level": 1,
+              "effect": "攻击提升",
+              "unlockText": "战魂达到5阶后升级"
+            },
+            {
+              "name": "利爪",
+              "level": 1,
+              "effect": "回复、防御降低",
+              "unlockText": "战魂达到5阶后升级"
+            },
+            {
+              "name": "迅捷",
+              "level": 1,
+              "effect": "闪避提升",
+              "unlockText": "战魂达到6阶后升级"
+            }
+          ],
+          "refineAttributes": {
+            "hp": 55621,
+            "attack": 547,
+            "defense": 296,
+            "lifestealPct": 5.71,
+            "critPct": 6.81
+          },
+          "source": "user_screenshot_16"
+        }
+      ],
+      "source": "user_screenshot_06_17"
+    },
+    "hunting": {
+      "enabledInV1": true,
+      "stamina": {
+        "max": 100,
+        "regen": "missing_user_screenshot"
+      },
+      "maps": [],
+      "source": "missing_user_screenshot"
+    },
+    "beast": {
+      "enabledInV1": true,
+      "synthesisKeepsFailureChance": true,
+      "items": [],
+      "synthesisRates": [],
+      "source": "missing_user_screenshot"
+    },
+    "territory": {
+      "enabledInV1": true,
+      "model": "refresh_random_targets_and_pull_resources",
+      "source": "user_answers"
+    },
+    "mount": {
+      "enabledInV1": true,
+      "items": [],
+      "source": "missing_user_screenshot"
+    },
+    "soulCard": {
+      "enabledInV1": true,
+      "includeIndependentCardBattle": false,
+      "features": ["deck", "set_bonus", "upgrade", "refine", "owner_attribute_affixes"],
+      "source": "user_answers"
+    },
+    "battleFlag": {
+      "enabledInV1": true,
+      "model": "resource_upgrade_attribute_growth",
+      "source": "user_answers"
+    },
+    "artifact": {
+      "enabledInV1": true,
+      "slots": 1,
+      "passiveSkills": [],
+      "source": "official_probability_image"
+    },
+    "rune": {
+      "enabledInV1": true,
+      "model": "independent_character_attribute_upgrade",
+      "source": "user_answers"
+    },
+    "gem": {
+      "enabledInV1": true,
+      "model": "independent_synthesis_upgrade_detach_cost",
+      "source": "user_answers"
+    },
+    "guild": {
+      "enabledInV1": true,
+      "features": ["member_list", "guild_shop", "basic_rank", "boss_placeholder"],
+      "donationEnabledInV1": false,
+      "source": "user_answers"
+    }
+  },
+  "virtualServer": {
+    "serverName": "S1 跃动新区",
+    "serverDayStart": 1,
+    "npcPlayerCount": 50,
+    "guildCount": 5,
+    "growthProfiles": [
+      { "id": "f2p", "name": "白嫖", "weight": 45, "dailyShopBudgetRmb": 0 },
+      { "id": "light_spender", "name": "微氪", "weight": 30, "dailyShopBudgetRmb": 6 },
+      { "id": "mid_spender", "name": "中氪", "weight": 18, "dailyShopBudgetRmb": 30 },
+      { "id": "ranker", "name": "冲榜", "weight": 7, "dailyShopBudgetRmb": 98 }
+    ],
+    "npcNames": [
+      "云起",
+      "小风",
+      "青橙",
+      "星河",
+      "北辰",
+      "阿白",
+      "南栀",
+      "秋水",
+      "山月",
+      "逐光"
+    ],
+    "source": "user_answers"
+  },
+  "save": {
+    "storage": "IndexedDB",
+    "exportImport": true,
+    "resetSave": true
+  }
+}

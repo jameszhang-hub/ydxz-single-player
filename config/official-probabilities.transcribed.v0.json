@@ -1,0 +1,283 @@
+{
+  "meta": {
+    "source": "official_probability_image",
+    "sourceUrl": "https://ydxz.miaomiaozhua.com/images/img_publicity_txt.png",
+    "transcriptionVersion": "0.0.1",
+    "notes": [
+      "Percentages are transcribed from the official probability publicity image.",
+      "Some rows are rounded in the source image, so displayed percentages may sum to 99.99 or 100.01.",
+      "Only clearly readable sections are included here; incomplete rows remain omitted until further OCR or screenshots."
+    ]
+  },
+  "warSoulRefine": {
+    "title": "战魂精炼概率公示",
+    "qualityColumns": ["platinum_or_color", "red", "orange", "yellow", "purple", "blue", "green", "white"],
+    "grade3RatesByLuck": [
+      {
+        "perfectWarSoulLuck": "2000+",
+        "legendaryWarSoulLuck": "2400+",
+        "ratesPct": [1.6, 3.6, 33.2, 47.2, 14.2, 0.2, 0, 0]
+      },
+      {
+        "perfectWarSoulLuck": "2000+",
+        "legendaryWarSoulLuck": "",
+        "ratesPct": [0, 3.8, 33.4, 48.2, 14.4, 0.2, 0, 0]
+      },
+      {
+        "perfectWarSoulLuck": "1500~1999",
+        "legendaryWarSoulLuck": "1800~2399",
+        "ratesPct": [0, 0, 0.01, 8.4, 58.1, 32.9, 0.6, 0],
+        "lessThanFlags": ["orange"]
+      },
+      {
+        "perfectWarSoulLuck": "1000~1499",
+        "legendaryWarSoulLuck": "1200~1799",
+        "ratesPct": [0, 0, 0, 0, 2, 70.9, 27.1, 0]
+      },
+      {
+        "perfectWarSoulLuck": "500~999",
+        "legendaryWarSoulLuck": "600~1199",
+        "ratesPct": [0, 0, 0, 0, 0, 5, 90, 5]
+      },
+      {
+        "perfectWarSoulLuck": "0~499",
+        "legendaryWarSoulLuck": "0~599",
+        "ratesPct": [0, 0, 0, 0, 0, 0, 15, 85]
+      }
+    ],
+    "grade2RatesByLuck": [
+      {
+        "epicWarSoulLuck": "1200+",
+        "legendaryWarSoulLuck": "1600+",
+        "ratesPct": [0, 3.3, 33.6, 48.3, 14.5, 0.3, 0, 0]
+      },
+      {
+        "epicWarSoulLuck": "900~1199",
+        "legendaryWarSoulLuck": "1200~1599",
+        "ratesPct": [0, 0, 0.01, 8.4, 58.1, 32.9, 0.6, 0],
+        "lessThanFlags": ["orange"]
+      },
+      {
+        "epicWarSoulLuck": "600~899",
+        "legendaryWarSoulLuck": "800~1199",
+        "ratesPct": [0, 0, 0, 0, 2, 70.9, 27.1, 0]
+      },
+      {
+        "epicWarSoulLuck": "300~599",
+        "legendaryWarSoulLuck": "400~799",
+        "ratesPct": [0, 0, 0, 0, 0, 5, 90, 5]
+      },
+      {
+        "epicWarSoulLuck": "0~299",
+        "legendaryWarSoulLuck": "0~399",
+        "ratesPct": [0, 0, 0, 0, 0, 0, 15, 85]
+      }
+    ],
+    "grade1RatesByLuck": [
+      {
+        "excellentWarSoulLuck": "400+",
+        "rareWarSoulLuck": "800+",
+        "ratesPct": [0, 3.3, 33.6, 48.3, 14.5, 0.3, 0, 0]
+      },
+      {
+        "excellentWarSoulLuck": "300~399",
+        "rareWarSoulLuck": "600~799",
+        "ratesPct": [0, 0, 0.01, 8.4, 58.1, 32.9, 0.6, 0],
+        "lessThanFlags": ["orange"]
+      },
+      {
+        "excellentWarSoulLuck": "200~299",
+        "rareWarSoulLuck": "400~599",
+        "ratesPct": [0, 0, 0, 0, 2, 70.9, 27.1, 0]
+      },
+      {
+        "excellentWarSoulLuck": "100~199",
+        "rareWarSoulLuck": "200~399",
+        "ratesPct": [0, 0, 0, 0, 0, 5, 90, 5]
+      },
+      {
+        "excellentWarSoulLuck": "0~99",
+        "rareWarSoulLuck": "0~199",
+        "ratesPct": [0, 0, 0, 0, 0, 0, 15, 85]
+      }
+    ]
+  },
+  "dailyTurntable": {
+    "title": "每日转盘 概率公示（9次后必然获取所有奖励）",
+    "pools": [
+      {
+        "id": "daily_turntable_1",
+        "items": [
+          { "name": "宝箱*999", "pct": 3.31 },
+          { "name": "宝石券*5", "pct": 5.14 },
+          { "name": "食物*20", "pct": 5.14 },
+          { "name": "宝箱*200", "pct": 14.4 },
+          { "name": "肉排*20", "pct": 14.4 },
+          { "name": "宝箱*99", "pct": 14.4 },
+          { "name": "宝石券*1", "pct": 14.4 },
+          { "name": "食物*5", "pct": 14.4 },
+          { "name": "肉排*10", "pct": 14.4 }
+        ]
+      },
+      {
+        "id": "daily_turntable_2",
+        "items": [
+          { "name": "宝箱*999", "pct": 3.31 },
+          { "name": "魔兽精华*5", "pct": 5.14 },
+          { "name": "符文碎片*20", "pct": 5.14 },
+          { "name": "宝石券*5", "pct": 14.4 },
+          { "name": "宝箱*200", "pct": 14.4 },
+          { "name": "符文碎片*10", "pct": 14.4 },
+          { "name": "魔兽精华*2", "pct": 14.4 },
+          { "name": "宝箱*99", "pct": 14.4 },
+          { "name": "食物*10", "pct": 14.4 }
+        ]
+      }
+    ]
+  },
+  "chestExtraDrops": {
+    "title": "宝箱额外产出",
+    "items": [
+      {
+        "name": "竞技场门票",
+        "trigger": "每次开箱",
+        "pct": 3,
+        "limitNote": "达到门票持有上限后无法获得"
+      },
+      {
+        "name": "砸蛋宝锤",
+        "trigger": "一锤定音活动期间，每次开箱",
+        "pct": 1,
+        "limitNote": "每天获得3次后无法获得"
+      },
+      {
+        "name": "宝库钥匙/跃动徽章",
+        "trigger": "国王宝库活动期间，每次开箱",
+        "pct": 1,
+        "limitNote": "每天获得2次后无法获得"
+      },
+      {
+        "name": "宝库钥匙/跃动徽章",
+        "trigger": "国王宝库活动期间，角斗场每次挑战胜利",
+        "pct": 30,
+        "limitNote": "每天获得2次后无法获得"
+      },
+      {
+        "name": "宝库钥匙/跃动徽章",
+        "trigger": "国王宝库活动期间，领地每次拉取资源",
+        "pct": 25,
+        "limitNote": "每天获得2次后无法获得"
+      },
+      {
+        "name": "金蛇送福活动道具",
+        "trigger": "每次开箱",
+        "pct": 1
+      },
+      {
+        "name": "金蛇送福活动道具",
+        "trigger": "每次角斗场挑战胜利",
+        "pct": 35
+      },
+      {
+        "name": "金蛇送福活动道具",
+        "trigger": "每次领地拉取资源",
+        "pct": 50
+      }
+    ]
+  },
+  "runeDraw": {
+    "title": "符文抽取概率",
+    "items": [
+      { "name": "橙色符文", "pct": 5.53 },
+      { "name": "绿色符文", "pct": 48.41 },
+      { "name": "蓝色符文", "pct": 34.58 },
+      { "name": "百变符文", "pct": 1.11 },
+      { "name": "2连抽", "pct": 3.46 },
+      { "name": "3连抽", "pct": 3.46 },
+      { "name": "5连抽", "pct": 3.46 }
+    ]
+  },
+  "gem": {
+    "title": "宝石合成概率、宝石券",
+    "note": "使用宝石券购买1级宝石/打开宝石袋时/合成6级及以下的宝石时，获得宝石结果的概率为四色宝石平均概率，各25%。",
+    "colorRatesPct": [
+      { "name": "颜色1", "pct": 25 },
+      { "name": "颜色2", "pct": 25 },
+      { "name": "颜色3", "pct": 25 },
+      { "name": "颜色4", "pct": 25 }
+    ]
+  },
+  "beastRandomUpgrade": {
+    "title": "魔兽随机升级、魔兽吞噬概率",
+    "items": [
+      { "name": "速度", "pct": 5.88 },
+      { "name": "生命", "pct": 5.88 },
+      { "name": "攻击", "pct": 5.88 },
+      { "name": "防御", "pct": 5.88 },
+      { "name": "吸血", "pct": 2.94 },
+      { "name": "反击", "pct": 2.94 },
+      { "name": "连击", "pct": 2.94 },
+      { "name": "闪避", "pct": 2.94 },
+      { "name": "暴击", "pct": 2.94 },
+      { "name": "击晕", "pct": 2.94 },
+      { "name": "生命加成", "pct": 1.77 },
+      { "name": "攻击加成", "pct": 1.77 },
+      { "name": "防御加成", "pct": 1.77 },
+      { "name": "闪避抗性", "pct": 5.88 },
+      { "name": "暴击抗性", "pct": 5.88 },
+      { "name": "击晕抗性", "pct": 5.88 },
+      { "name": "反击抗性", "pct": 5.88 },
+      { "name": "暴伤", "pct": 2.94 },
+      { "name": "坚毅", "pct": 4.71 },
+      { "name": "疗伤", "pct": 2.94 },
+      { "name": "恢复", "pct": 4.71 }
+    ],
+    "transcriptionStatus": "partial_bottom_rows_cut_off_in_current_slice"
+  },
+  "battleFlagUpgrade": {
+    "title": "战旗升级进度概率",
+    "successRatesByLevel": [
+      { "levelRange": "1~9", "pct": 100 },
+      { "levelRange": "10~19", "pct": 90 },
+      { "levelRange": "20~29", "pct": 80 },
+      { "levelRange": "30~39", "pct": 70 },
+      { "levelRange": "40~49", "pct": 60 },
+      { "levelRange": "50~59", "pct": 50 },
+      { "levelRange": "60~69", "pct": 40 },
+      { "levelRange": "70~79", "pct": 30 },
+      { "levelRange": "80~89", "pct": 20 },
+      { "levelRange": "90~120", "pct": 10 }
+    ],
+    "expGainRates": [
+      { "exp": 1, "pct": 30 },
+      { "exp": 2, "pct": 20 },
+      { "exp": 3, "pct": 20 },
+      { "exp": 5, "pct": 15 },
+      { "exp": 10, "pct": 10 },
+      { "exp": 20, "pct": 5 }
+    ]
+  },
+  "beastSkillTraining": {
+    "title": "魔兽技能洗练概率",
+    "ratesByQuality": [
+      { "quality": "优秀", "initialPct": 70, "middlePct": 20, "advancedPct": 10 },
+      { "quality": "精良", "initialPct": 70, "middlePct": 20, "advancedPct": 10 },
+      { "quality": "稀有", "initialPct": 60, "middlePct": 25, "advancedPct": 15 },
+      { "quality": "史诗", "initialPct": 50, "middlePct": 30, "advancedPct": 20 },
+      { "quality": "传说", "initialPct": 40, "middlePct": 35, "advancedPct": 25 },
+      { "quality": "完美", "initialPct": 30, "middlePct": 40, "advancedPct": 30 },
+      { "quality": "超凡", "initialPct": 0, "middlePct": 45, "advancedPct": 55 }
+    ]
+  },
+  "mountUpgradeAttribute": {
+    "title": "坐骑升级属性变化概率",
+    "mainAttributeChancePct": 66.67,
+    "ranges": [
+      { "quality": "优秀", "mainRangePct": "1.00~2.20", "otherRangePct": "1.00~2.20" },
+      { "quality": "精良", "mainRangePct": "1.00~3.00", "otherRangePct": "1.00~2.20" },
+      { "quality": "稀有", "mainRangePct": "1.00~3.00", "otherRangePct": "1.00~2.20" },
+      { "quality": "史诗", "mainRangePct": "1.00~3.30", "otherRangePct": "1.00~2.20" },
+      { "quality": "完美", "mainRangePct": "1.00~3.60", "otherRangePct": "1.00~2.20" }
+    ]
+  }
+}
